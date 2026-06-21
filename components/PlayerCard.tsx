@@ -1,0 +1,105 @@
+"use client";
+
+import { Player } from "@/types";
+
+interface PlayerCardProps {
+  player: Player;
+  onSelect: (player: Player) => void;
+  isSelected?: boolean;
+  isInSquad?: boolean;
+}
+
+const attributeColors: Record<string, string> = {
+  logica: "bg-blue-500",
+  comunicacao: "bg-green-500",
+  colaboracao: "bg-yellow-500",
+  inovacao: "bg-purple-500",
+  consistencia: "bg-red-500",
+};
+
+const attributeLabels: Record<string, string> = {
+  logica: "LGC",
+  comunicacao: "COM",
+  colaboracao: "COL",
+  inovacao: "INV",
+  consistencia: "CST",
+};
+
+export default function PlayerCard({
+  player,
+  onSelect,
+  isSelected,
+  isInSquad,
+}: PlayerCardProps) {
+  return (
+    <div
+      onClick={() => onSelect(player)}
+      className={`relative flex items-center gap-3 p-2.5 rounded-lg cursor-pointer border transition-all ${
+        isSelected
+          ? "border-yellow-400 bg-yellow-400/10"
+          : isInSquad
+          ? "border-green-500/50 bg-green-500/10 opacity-75"
+          : "border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10"
+      }`}
+    >
+      {/* Overall badge */}
+      <div className="absolute top-1 left-1 bg-black/80 text-yellow-400 text-[10px] font-black w-6 h-6 rounded flex items-center justify-center">
+        {player.overall}
+      </div>
+
+      {/* Photo */}
+      <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 ml-5">
+        <img
+          src={player.photo}
+          alt={player.name}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+              player.name
+            )}&background=1a1a2e&color=fff&size=40`;
+          }}
+        />
+      </div>
+
+      {/* Info */}
+      <div className="flex-1 min-w-0">
+        <p className="text-white text-xs font-bold truncate">{player.name}</p>
+        <p className="text-gray-400 text-[10px] truncate">{player.role}</p>
+        <div className="flex gap-1 mt-1">
+          {player.positions.map((pos) => (
+            <span
+              key={pos}
+              className="bg-white/10 text-white/70 text-[9px] px-1 rounded"
+            >
+              {pos}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Mini stats */}
+      <div className="flex flex-col gap-0.5 shrink-0">
+        {Object.entries(player.attributes)
+          .slice(0, 3)
+          .map(([key, val]) => (
+            <div key={key} className="flex items-center gap-1">
+              <span className="text-gray-400 text-[8px] w-6">
+                {attributeLabels[key]}
+              </span>
+              <div className="w-10 h-1 bg-white/10 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full ${attributeColors[key]}`}
+                  style={{ width: `${val}%` }}
+                />
+              </div>
+              <span className="text-white/60 text-[8px] w-4">{val}</span>
+            </div>
+          ))}
+      </div>
+
+      {isInSquad && (
+        <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full" />
+      )}
+    </div>
+  );
+}

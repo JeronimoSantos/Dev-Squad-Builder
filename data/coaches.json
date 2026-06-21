@@ -1,0 +1,116 @@
+[
+  {
+    "id": "gustavo-guanabara",
+    "name": "Gustavo Guanabara",
+    "handle": "@gustavoguanabara",
+    "photo": "https://unavatar.io/github/gustavoguanabara",
+    "philosophy": "Educação para Todos",
+    "bonuses": [
+      {
+        "attribute": "comunicacao",
+        "value": 7,
+        "description": "+7 Comunicação para todos os jogadores"
+      },
+      {
+        "attribute": "consistencia",
+        "value": 5,
+        "description": "+5 Consistência para todos os jogadores"
+      }
+    ]
+  },
+  {
+    "id": "fabio-akita",
+    "name": "Fábio Akita",
+    "handle": "@Akitaonrails",
+    "photo": "https://unavatar.io/github/akitaonrails",
+    "philosophy": "Pense por Si Mesmo",
+    "bonuses": [
+      {
+        "attribute": "logica",
+        "value": 8,
+        "description": "+8 Lógica para todos os jogadores"
+      },
+      {
+        "attribute": "inovacao",
+        "value": 4,
+        "description": "+4 Inovação para todos os jogadores"
+      }
+    ]
+  },
+  {
+    "id": "paulo-silveira",
+    "name": "Paulo Silveira",
+    "handle": "@paulo_caelum",
+    "photo": "https://unavatar.io/twitter/paulo_caelum",
+    "philosophy": "Ensinar é Aprender Duas Vezes",
+    "bonuses": [
+      {
+        "attribute": "logica",
+        "value": 5,
+        "description": "+5 Lógica para todos os jogadores"
+      },
+      {
+        "attribute": "colaboracao",
+        "value": 6,
+        "description": "+6 Colaboração para todos os jogadores"
+      }
+    ]
+  },
+  {
+    "id": "felipao-dio",
+    "name": "Felipão DIO",
+    "handle": "@felipeaguinaldo",
+    "photo": "https://unavatar.io/github/falvojr",
+    "philosophy": "Pratique, Pratique, Pratique",
+    "bonuses": [
+      {
+        "attribute": "consistencia",
+        "value": 8,
+        "description": "+8 Consistência para todos os jogadores"
+      },
+      {
+        "attribute": "colaboracao",
+        "value": 4,
+        "description": "+4 Colaboração para todos os jogadores"
+      }
+    ]
+  },
+  {
+    "id": "gabriel-froes",
+    "name": "Gabriel Fróes",
+    "handle": "@gabrielfroes",
+    "photo": "https://unavatar.io/github/gabrielfroes",
+    "philosophy": "Criatividade é uma Habilidade Técnica",
+    "bonuses": [
+      {
+        "attribute": "inovacao",
+        "value": 8,
+        "description": "+8 Inovação para todos os jogadores"
+      },
+      {
+        "attribute": "comunicacao",
+        "value": 4,
+        "description": "+4 Comunicação para todos os jogadores"
+      }
+    ]
+  },
+  {
+    "id": "vanessa-weber",
+    "name": "Vanessa Weber",
+    "handle": "@vanessaweber",
+    "photo": "https://unavatar.io/github/vanessaweber",
+    "philosophy": "Comunidade Transforma Carreiras",
+    "bonuses": [
+      {
+        "attribute": "colaboracao",
+        "value": 9,
+        "description": "+9 Colaboração para todos os jogadores"
+      },
+      {
+        "attribute": "comunicacao",
+        "value": 4,
+        "description": "+4 Comunicação para todos os jogadores"
+      }
+    ]
+  }
+]

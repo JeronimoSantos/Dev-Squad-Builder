@@ -1,0 +1,506 @@
+[
+  {
+    "id": "filipe-deschamps",
+    "name": "Filipe Deschamps",
+    "handle": "@FilipeDeschamps",
+    "photo": "https://unavatar.io/github/filipedeschamps",
+    "role": "YouTuber Dev",
+    "positions": ["MAT", "PTE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 85,
+      "comunicacao": 96,
+      "colaboracao": 88,
+      "inovacao": 91,
+      "consistencia": 87
+    },
+    "overall": 89,
+    "tags": ["JavaScript", "Node.js", "YouTube", "Educação"]
+  },
+  {
+    "id": "giovanni-bassi",
+    "name": "Giovanni Bassi",
+    "handle": "@giovannibassi",
+    "photo": "https://unavatar.io/github/giovannibassi",
+    "role": "Arquiteto de Software",
+    "positions": ["ZA", "VOL"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 96,
+      "comunicacao": 85,
+      "colaboracao": 82,
+      "inovacao": 87,
+      "consistencia": 94
+    },
+    "overall": 89,
+    "tags": [".NET", "C#", "DDD", "Arquitetura"]
+  },
+  {
+    "id": "mayk-brito",
+    "name": "Mayk Brito",
+    "handle": "@maykbrito",
+    "photo": "https://unavatar.io/github/maykbrito",
+    "role": "DevRel",
+    "positions": ["PTE", "MAT"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 83,
+      "comunicacao": 95,
+      "colaboracao": 93,
+      "inovacao": 85,
+      "consistencia": 86
+    },
+    "overall": 88,
+    "tags": ["JavaScript", "Rocketseat", "HTML", "CSS"]
+  },
+  {
+    "id": "lucas-montano",
+    "name": "Lucas Montano",
+    "handle": "@lucasmontano",
+    "photo": "https://unavatar.io/github/lucasmontano",
+    "role": "YouTuber Dev",
+    "positions": ["PTD", "MLD"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 86,
+      "comunicacao": 93,
+      "colaboracao": 87,
+      "inovacao": 84,
+      "consistencia": 88
+    },
+    "overall": 88,
+    "tags": ["Flutter", "Dart", "Mobile", "YouTube"]
+  },
+  {
+    "id": "diego-fernandes",
+    "name": "Diego Fernandes",
+    "handle": "@dieegosf",
+    "photo": "https://unavatar.io/github/diego3g",
+    "role": "Tech Lead",
+    "positions": ["MLG", "MAT"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 92,
+      "comunicacao": 88,
+      "colaboracao": 91,
+      "inovacao": 93,
+      "consistencia": 90
+    },
+    "overall": 91,
+    "tags": ["React", "Node.js", "Rocketseat", "TypeScript"]
+  },
+  {
+    "id": "willian-justen",
+    "name": "Willian Justen",
+    "handle": "@Willian_justen",
+    "photo": "https://unavatar.io/github/willianjusten",
+    "role": "Frontend Dev",
+    "positions": ["LD", "MLD"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 85,
+      "comunicacao": 89,
+      "colaboracao": 91,
+      "inovacao": 87,
+      "consistencia": 88
+    },
+    "overall": 88,
+    "tags": ["SVG", "CSS", "TypeScript", "Open Source"]
+  },
+  {
+    "id": "henrique-bastos",
+    "name": "Henrique Bastos",
+    "handle": "@henriquebastos",
+    "photo": "https://unavatar.io/github/henriquebastos",
+    "role": "Open Source Contributor",
+    "positions": ["VOL", "ZA"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 91,
+      "comunicacao": 86,
+      "colaboracao": 93,
+      "inovacao": 85,
+      "consistencia": 91
+    },
+    "overall": 89,
+    "tags": ["Python", "Django", "Open Source", "Comunidade"]
+  },
+  {
+    "id": "loiane-groner",
+    "name": "Loiane Groner",
+    "handle": "@loiane",
+    "photo": "https://unavatar.io/github/loiane",
+    "role": "Tech Lead",
+    "positions": ["MLG", "MAT"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 93,
+      "comunicacao": 90,
+      "colaboracao": 89,
+      "inovacao": 86,
+      "consistencia": 94
+    },
+    "overall": 90,
+    "tags": ["Java", "Angular", "Spring", "Educação"]
+  },
+  {
+    "id": "rodrigo-manguinho",
+    "name": "Rodrigo Manguinho",
+    "handle": "@rmanguinho",
+    "photo": "https://unavatar.io/github/rmanguinho",
+    "role": "Arquiteto de Software",
+    "positions": ["ZA", "VOL"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 95,
+      "comunicacao": 84,
+      "colaboracao": 82,
+      "inovacao": 86,
+      "consistencia": 95
+    },
+    "overall": 88,
+    "tags": ["TDD", "Clean Architecture", "TypeScript", "Node.js"]
+  },
+  {
+    "id": "iuricode",
+    "name": "Iuri Silva",
+    "handle": "@iuricode",
+    "photo": "https://unavatar.io/github/iuricode",
+    "role": "Frontend Dev",
+    "positions": ["PTE", "MLE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 82,
+      "comunicacao": 94,
+      "colaboracao": 90,
+      "inovacao": 88,
+      "consistencia": 84
+    },
+    "overall": 88,
+    "tags": ["UI", "CSS", "React", "Design System"]
+  },
+  {
+    "id": "leandro-tk",
+    "name": "Leandro TK",
+    "handle": "@leandrotk_",
+    "photo": "https://unavatar.io/github/leandrotk",
+    "role": "Frontend Dev",
+    "positions": ["MLG", "MLE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 87,
+      "comunicacao": 86,
+      "colaboracao": 88,
+      "inovacao": 85,
+      "consistencia": 87
+    },
+    "overall": 87,
+    "tags": ["TypeScript", "React", "Python", "Artigos"]
+  },
+  {
+    "id": "vedovelli",
+    "name": "Fábio Vedovelli",
+    "handle": "@vedovelli",
+    "photo": "https://unavatar.io/github/vedovelli",
+    "role": "Frontend Dev",
+    "positions": ["LE", "MLE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 88,
+      "comunicacao": 87,
+      "colaboracao": 89,
+      "inovacao": 84,
+      "consistencia": 90
+    },
+    "overall": 88,
+    "tags": ["Vue.js", "Nuxt", "Testes", "JavaScript"]
+  },
+  {
+    "id": "elton-minetto",
+    "name": "Elton Minetto",
+    "handle": "@eminetto",
+    "photo": "https://unavatar.io/github/eminetto",
+    "role": "Tech Lead",
+    "positions": ["ZA", "LE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 91,
+      "comunicacao": 85,
+      "colaboracao": 87,
+      "inovacao": 83,
+      "consistencia": 92
+    },
+    "overall": 88,
+    "tags": ["Go", "PHP", "Clean Architecture", "Livros"]
+  },
+  {
+    "id": "jaydson-gomes",
+    "name": "Jaydson Gomes",
+    "handle": "@jaydson",
+    "photo": "https://unavatar.io/github/jaydson",
+    "role": "Open Source Contributor",
+    "positions": ["MLG", "VOL"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 89,
+      "comunicacao": 87,
+      "colaboracao": 91,
+      "inovacao": 86,
+      "consistencia": 88
+    },
+    "overall": 88,
+    "tags": ["JavaScript", "BrazilJS", "Open Source", "Comunidade"]
+  },
+  {
+    "id": "robson-marques",
+    "name": "Robson Marques",
+    "handle": "@oRobsonMarques",
+    "photo": "https://unavatar.io/github/orobsonmarques",
+    "role": "CTO",
+    "positions": ["GO"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 90,
+      "comunicacao": 88,
+      "colaboracao": 90,
+      "inovacao": 92,
+      "consistencia": 91
+    },
+    "overall": 90,
+    "tags": ["Rocketseat", "Empreendedorismo", "React Native", "Liderança"]
+  },
+  {
+    "id": "natan-souza",
+    "name": "Natan Souza",
+    "handle": "@designernatan",
+    "photo": "https://unavatar.io/github/natansouzaa",
+    "role": "Frontend Dev",
+    "positions": ["PTD", "MLD"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 82,
+      "comunicacao": 91,
+      "colaboracao": 87,
+      "inovacao": 89,
+      "consistencia": 83
+    },
+    "overall": 86,
+    "tags": ["HTML", "CSS", "Design", "Acessibilidade"]
+  },
+  {
+    "id": "alda-rocha",
+    "name": "Alda Rocha",
+    "handle": "@mjcoffeeholics",
+    "photo": "https://unavatar.io/github/aldaRocha",
+    "role": "Backend Dev",
+    "positions": ["CA"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 88,
+      "comunicacao": 88,
+      "colaboracao": 92,
+      "inovacao": 86,
+      "consistencia": 87
+    },
+    "overall": 88,
+    "tags": ["Python", "Django", "Diversidade", "Comunidade"]
+  },
+  {
+    "id": "luan-moreno",
+    "name": "Luan Moreno",
+    "handle": "@lnmoreno",
+    "photo": "https://unavatar.io/github/lnmoreno",
+    "role": "Fullstack Dev",
+    "positions": ["CA", "MAT"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 87,
+      "comunicacao": 84,
+      "colaboracao": 85,
+      "inovacao": 88,
+      "consistencia": 86
+    },
+    "overall": 86,
+    "tags": ["Node.js", "React", "TypeScript", "Fullstack"]
+  },
+  {
+    "id": "ana-paula-lima",
+    "name": "Ana Paula Lima",
+    "handle": "@anaguiar",
+    "photo": "https://unavatar.io/github/anaguiar",
+    "role": "DevRel",
+    "positions": ["MLG", "MLE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 85,
+      "comunicacao": 93,
+      "colaboracao": 94,
+      "inovacao": 84,
+      "consistencia": 86
+    },
+    "overall": 88,
+    "tags": ["DevRel", "Comunidade", "Inclusão", "JavaScript"]
+  },
+  {
+    "id": "zanfranceschi",
+    "name": "Eduardo Zanfranceschi",
+    "handle": "@zanfranceschi",
+    "photo": "https://unavatar.io/github/zanfranceschi",
+    "role": "Backend Dev",
+    "positions": ["ZA", "LD"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 92,
+      "comunicacao": 83,
+      "colaboracao": 86,
+      "inovacao": 85,
+      "consistencia": 93
+    },
+    "overall": 88,
+    "tags": ["Sistemas Distribuídos", ".NET", "Backend", "Rinha de Backend"]
+  },
+  {
+    "id": "lauromoura",
+    "name": "Lauro Moura",
+    "handle": "@lauromoura",
+    "photo": "https://unavatar.io/github/lauromoura",
+    "role": "Open Source Contributor",
+    "positions": ["LE", "VOL"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 90,
+      "comunicacao": 82,
+      "colaboracao": 90,
+      "inovacao": 84,
+      "consistencia": 89
+    },
+    "overall": 87,
+    "tags": ["C++", "EFL", "Open Source", "Linux"]
+  },
+  {
+    "id": "mano-deyvin",
+    "name": "Mano Deyvin",
+    "handle": "@manodeyvin",
+    "photo": "https://unavatar.io/github/manodev",
+    "role": "YouTuber Dev",
+    "positions": ["CA", "PTD"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 84,
+      "comunicacao": 96,
+      "colaboracao": 88,
+      "inovacao": 87,
+      "consistencia": 83
+    },
+    "overall": 88,
+    "tags": ["JavaScript", "YouTube", "Humor", "Entretenimento Dev"]
+  },
+  {
+    "id": "guilherme-lima",
+    "name": "Guilherme Lima",
+    "handle": "@guilhermeonrails",
+    "photo": "https://unavatar.io/github/guilhermeonrails",
+    "role": "Backend Dev",
+    "positions": ["MLG", "VOL"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 89,
+      "comunicacao": 88,
+      "colaboracao": 87,
+      "inovacao": 83,
+      "consistencia": 91
+    },
+    "overall": 88,
+    "tags": ["Python", "Django", "Alura", "Educação"]
+  },
+  {
+    "id": "rafa-ballerini",
+    "name": "Rafa Ballerini",
+    "handle": "@rafaballerini",
+    "photo": "https://unavatar.io/github/rafaballerini",
+    "role": "Frontend Dev",
+    "positions": ["PTE", "MLE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 83,
+      "comunicacao": 92,
+      "colaboracao": 91,
+      "inovacao": 88,
+      "consistencia": 85
+    },
+    "overall": 88,
+    "tags": ["CSS", "HTML", "Alura", "Frontend"]
+  },
+  {
+    "id": "attekita",
+    "name": "Attekita Dev",
+    "handle": "@attekita",
+    "photo": "https://unavatar.io/github/attekita",
+    "role": "Influencer Dev",
+    "positions": ["SA", "MAT"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 88,
+      "comunicacao": 93,
+      "colaboracao": 86,
+      "inovacao": 85,
+      "consistencia": 87
+    },
+    "overall": 88,
+    "tags": ["Carreira", "Engenharia de Software", "YouTube", "Big Tech"]
+  },
+  {
+    "id": "monica-hillman",
+    "name": "Monica Hillman",
+    "handle": "@MonicaHillman",
+    "photo": "https://unavatar.io/github/monicahillman",
+    "role": "DevRel",
+    "positions": ["MLG", "MLE"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 85,
+      "comunicacao": 92,
+      "colaboracao": 94,
+      "inovacao": 84,
+      "consistencia": 86
+    },
+    "overall": 88,
+    "tags": ["DevRel", "Comunidade", "Inclusão", "Tech"]
+  },
+  {
+    "id": "oprimo-dev",
+    "name": "O Primo Dev",
+    "handle": "@oprimodev",
+    "photo": "https://unavatar.io/github/oprimodev",
+    "role": "YouTuber Dev",
+    "positions": ["CA", "SA"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 83,
+      "comunicacao": 94,
+      "colaboracao": 89,
+      "inovacao": 86,
+      "consistencia": 84
+    },
+    "overall": 87,
+    "tags": ["JavaScript", "YouTube", "Iniciantes", "Educação"]
+  },
+  {
+    "id": "venilton-falvo",
+    "name": "Venilton FalvoJr",
+    "handle": "@falvojr",
+    "photo": "https://unavatar.io/github/falvojr",
+    "role": "Open Source Contributor",
+    "positions": ["VOL", "ZA"],
+    "nationality": "BR",
+    "attributes": {
+      "logica": 91,
+      "comunicacao": 84,
+      "colaboracao": 90,
+      "inovacao": 85,
+      "consistencia": 92
+    },
+    "overall": 88,
+    "tags": ["Java", "DIO", "Open Source", "Android"]
+  }
+]
