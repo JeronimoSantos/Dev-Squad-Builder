@@ -16,6 +16,9 @@ Inspirado nos modos de construção de time dos videogames de futebol (FIFA Ulti
 - **Exportar card para redes sociais** — gera uma imagem 1080×1080px pronta para Instagram, Twitter/X e LinkedIn
 - **Persistência local** — o time montado é salvo automaticamente no navegador (localStorage) e sobrevive ao reload da página
 - **Compartilhar por link** — gera uma URL com o time inteiro codificado no hash; quem abrir o link vê exatamente o mesmo time
+- **Elenco customizável** — adicione, edite e remova jogadores diretamente pelo painel; dados customizados persistem no localStorage
+- **Técnicos customizáveis** — crie técnicos com filosofia e bônus próprios; edite ou remova qualquer técnico da lista
+- **Paginação na lista de jogadores** — 6 jogadores por página para facilitar a navegação
 
 ---
 
@@ -181,15 +184,63 @@ O hash (`#`) não é enviado ao servidor, evitando logs e facilitando uso em dep
 
 ---
 
+## Gerenciamento de Jogadores e Técnicos
+
+O usuário tem controle total sobre o elenco e o banco de técnicos, sem precisar editar arquivos JSON.
+
+### Jogadores
+
+Na aba **Jogadores**, logo abaixo da barra de busca, há o botão **+ Novo Jogador**. Ao passar o mouse sobre qualquer card, dois botões aparecem no lado direito:
+
+| Botão | Ação |
+|-------|------|
+| ✎ (azul) | Abre o formulário de edição preenchido com os dados do jogador |
+| ✕ (vermelho) | Remove o jogador da lista (pede confirmação) |
+
+**Formulário de jogador:**
+- Nome e handle (obrigatórios)
+- URL da foto (opcional — usa `unavatar.io/{handle}` se vazio)
+- Role (select com 11 opções)
+- Posições (botões toggle — selecione ao menos uma)
+- 5 atributos com slider + campo numérico (1–99); OVR calculado automaticamente
+- Tags separadas por vírgula
+
+**Comportamento ao editar jogador dos dados originais:**
+O jogador original é ocultado e uma cópia editada é salva com o mesmo ID — squads que já tinham esse jogador continuam funcionando.
+
+### Técnicos
+
+Na aba **Técnico**, um botão **+ Novo Técnico** aparece no rodapé da lista. Ao passar o mouse sobre qualquer técnico, os mesmos botões ✎ e ✕ são exibidos.
+
+**Formulário de técnico:**
+- Nome, handle e filosofia (obrigatórios)
+- URL da foto (opcional)
+- 2 bônus: escolha o atributo (LGC / COM / COL / INV / CST) e o valor (+1 a +15)
+
+Ao remover um técnico que está selecionado no squad atual, a seleção é limpa automaticamente.
+
+### Armazenamento dos dados customizados
+
+Todos os jogadores e técnicos criados ou editados pelo usuário são salvos na chave `dev-squad-custom-data` do localStorage, separada da chave do squad (`dev-squad-builder`). Os dados originais dos arquivos JSON nunca são modificados — jogadores/técnicos removidos são apenas ocultados pela aplicação.
+
+---
+
 ## Formações disponíveis
 
-| Formação | Características                                    |
-|----------|----------------------------------------------------|
-| 4-3-3    | 3 MLG no meio, 2 pontas + 1 CA                    |
-| 4-4-2    | 2 MLE/MLD nas alas, 2 CA                          |
-| 4-2-3-1  | 2 VOL na base, trio ofensivo com MAT central      |
-| 3-5-2    | 3 ZA, meio-campo amplo com MLE/MLD, 2 CA          |
-| 5-3-2    | 5 defensores, 3 MLG, 2 CA                        |
+| Formação | Características                                                  |
+|----------|------------------------------------------------------------------|
+| 4-3-3    | 3 MLG no meio, 2 pontas + 1 CA                                  |
+| 4-4-2    | 2 MLE/MLD nas alas, 2 CA                                        |
+| 4-2-3-1  | 2 VOL na base, trio ofensivo (PTE + MAT + PTD) + 1 CA           |
+| 4-3-2-1  | "Árvore de Natal" — 3 MLG, 2 MAT e 1 CA em pirâmide            |
+| 4-3-1-2  | 3 MLG + 1 MAT avançado, dupla de centroavantes                  |
+| 4-2-1-2  | Losango no meio: 2 VOL + 1 MAT + 2 MLE/MLD ofensivos + 1 CA    |
+| 4-1-4-1  | 1 VOL pivô, 4 meias em bloco + 1 CA isolado                     |
+| 3-4-3    | 3 ZA, 4 meias com MLE/MLD, trio de ataque com pontas            |
+| 3-5-2    | 3 ZA, meio-campo amplo com MLE/MLD, 2 CA                        |
+| 5-2-2-1  | 5 defensores, 2 VOL, 2 MAT de apoio + 1 CA                     |
+| 5-3-2    | 5 defensores, 3 MLG, 2 CA                                       |
+| 3-1-4-2  | 3 ZA + 1 VOL pivô, 4 meias largos (MLE/MLD), 2 CA              |
 
 ---
 
@@ -201,7 +252,7 @@ O hash (`#`) não é enviado ao servidor, evitando logs e facilitando uso em dep
 | TypeScript              | Tipagem estática em todo o projeto                         |
 | Tailwind CSS            | Estilização utilitária                                     |
 | Zustand                 | Gerenciamento de estado global do squad                    |
-| zustand/middleware      | `persist` para salvar o squad no localStorage              |
+| zustand/middleware      | `persist` para salvar squad e dados customizados           |
 | html-to-image           | Geração de imagem PNG para compartilhar                    |
 
 ---
@@ -215,19 +266,22 @@ projeto-squad-builder/
 │   ├── layout.tsx         # Layout raiz com metadados
 │   └── globals.css        # Estilos globais e scrollbar customizada
 ├── components/
-│   ├── TacticalField.tsx  # Campo tático SVG com slots interativos
-│   ├── PlayerCard.tsx     # Card de jogador com atributos em barras
-│   ├── PlayerSelector.tsx # Lista com busca por nome/role/tech
-│   ├── FormationPicker.tsx# Seletor de formações táticas
-│   ├── CoachPicker.tsx    # Seletor de técnico
-│   ├── SquadStats.tsx     # Estatísticas médias do time
-│   ├── SquadRolesPanel.tsx# Painel de funções especiais
-│   ├── ShareCard.tsx      # Card 1080×1080px para exportação
-│   └── ShareModal.tsx     # Modal com prévia e botão de download
+│   ├── TacticalField.tsx    # Campo tático SVG com slots interativos
+│   ├── PlayerCard.tsx       # Card de jogador com botões hover de edição/remoção
+│   ├── PlayerSelector.tsx   # Lista paginada (6/pág) com busca e CRUD de jogadores
+│   ├── PlayerFormModal.tsx  # Modal formulário para criar/editar jogador
+│   ├── FormationPicker.tsx  # Seletor de formações táticas
+│   ├── CoachPicker.tsx      # Seletor de técnico com CRUD
+│   ├── CoachFormModal.tsx   # Modal formulário para criar/editar técnico
+│   ├── SquadStats.tsx       # Estatísticas médias do time
+│   ├── SquadRolesPanel.tsx  # Painel de funções especiais
+│   ├── ShareCard.tsx        # Card 1080×1080px para exportação
+│   └── ShareModal.tsx       # Modal com prévia e botão de download
 ├── lib/
-│   └── shareUrl.ts        # encodeSquad() / decodeSquad() para URL sharing
+│   └── shareUrl.ts          # encodeSquad() / decodeSquad() para URL sharing
 ├── store/
-│   └── squadStore.ts      # Store Zustand com persist middleware (localStorage)
+│   ├── squadStore.ts        # Store Zustand do squad com persist (localStorage)
+│   └── customDataStore.ts   # Store de jogadores/técnicos customizados com persist
 ├── types/
 │   └── index.ts           # Tipos TypeScript do domínio
 └── data/
@@ -257,3 +311,8 @@ Acesse [http://localhost:3000](http://localhost:3000).
 7. Clique em **Compartilhar** no header para gerar e baixar o card PNG para redes sociais
 
 > O time é salvo automaticamente — ao fechar e reabrir a aba, o squad estará exatamente onde você deixou.
+
+**Para gerenciar o elenco:**
+- Clique em **+ Novo Jogador** (aba Jogadores) para adicionar um dev customizado
+- Passe o mouse sobre qualquer card para ver os botões ✎ (editar) e ✕ (remover)
+- Na aba **Técnico**, use **+ Novo Técnico** e os mesmos botões de hover

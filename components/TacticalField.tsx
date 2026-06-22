@@ -2,6 +2,7 @@
 
 import { useSquadStore } from "@/store/squadStore";
 import { SquadSlot } from "@/types";
+import { onPhotoError } from "@/lib/photoFallback";
 
 function PlayerSlot({
   slot,
@@ -46,10 +47,7 @@ function PlayerSlot({
               src={slot.player.photo}
               alt={slot.player.name}
               className="w-full h-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  `https://ui-avatars.com/api/?name=${encodeURIComponent(slot.player!.name)}&background=1a1a2e&color=fff&size=48`;
-              }}
+              onError={(e) => onPhotoError(e, slot.player!.handle, slot.player!.name, 48)}
             />
             <button
               onClick={handleRemove}

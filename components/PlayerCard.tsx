@@ -1,12 +1,15 @@
 "use client";
 
 import { Player } from "@/types";
+import { onPhotoError } from "@/lib/photoFallback";
 
 interface PlayerCardProps {
   player: Player;
   onSelect: (player: Player) => void;
   isSelected?: boolean;
   isInSquad?: boolean;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 const attributeColors: Record<string, string> = {
@@ -30,11 +33,15 @@ export default function PlayerCard({
   onSelect,
   isSelected,
   isInSquad,
+  onEdit,
+  onDelete,
 }: PlayerCardProps) {
+  const hasActions = onEdit || onDelete;
+
   return (
     <div
       onClick={() => onSelect(player)}
-      className={`relative flex items-center gap-3 p-2.5 rounded-lg cursor-pointer border transition-all ${
+      className={`group relative flex items-center gap-3 p-2.5 rounded-lg cursor-pointer border transition-all ${
         isSelected
           ? "border-yellow-400 bg-yellow-400/10"
           : isInSquad
@@ -53,11 +60,7 @@ export default function PlayerCard({
           src={player.photo}
           alt={player.name}
           className="w-full h-full object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
-              player.name
-            )}&background=1a1a2e&color=fff&size=40`;
-          }}
+          onError={(e) => onPhotoError(e, player.handle, player.name, 40)}
         />
       </div>
 
@@ -77,8 +80,12 @@ export default function PlayerCard({
         </div>
       </div>
 
-      {/* Mini stats */}
-      <div className="flex flex-col gap-0.5 shrink-0">
+      {/* Mini stats — hidden on hover when actions exist */}
+      <div
+        className={`flex flex-col gap-0.5 shrink-0 ${
+          hasActions ? "group-hover:invisible" : ""
+        }`}
+      >
         {Object.entries(player.attributes)
           .slice(0, 3)
           .map(([key, val]) => (
@@ -97,7 +104,37 @@ export default function PlayerCard({
           ))}
       </div>
 
-      {isInSquad && (
+      {/* Action buttons — revealed on hover */}
+      {hasActions && (
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 hidden group-hover:flex items-center gap-1">
+          {onEdit && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit();
+              }}
+              className="w-7 h-7 rounded-lg bg-white/10 hover:bg-blue-500/30 border border-white/10 hover:border-blue-400/50 text-gray-400 hover:text-blue-400 text-xs flex items-center justify-center transition-all"
+              title="Editar"
+            >
+              ✎
+            </button>
+          )}
+          {onDelete && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete();
+              }}
+              className="w-7 h-7 rounded-lg bg-white/10 hover:bg-red-500/30 border border-white/10 hover:border-red-400/50 text-gray-400 hover:text-red-400 text-xs flex items-center justify-center transition-all"
+              title="Remover"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      )}
+
+      {isInSquad && !hasActions && (
         <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full" />
       )}
     </div>

@@ -51,6 +51,91 @@
     ]
   },
   {
+    "id": "4-3-2-1",
+    "name": "4-3-2-1",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "LE",  "x": 15, "y": 72 },
+      { "position": "ZA",  "x": 35, "y": 72 },
+      { "position": "ZA",  "x": 65, "y": 72 },
+      { "position": "LD",  "x": 85, "y": 72 },
+      { "position": "MLG", "x": 25, "y": 54 },
+      { "position": "MLG", "x": 50, "y": 54 },
+      { "position": "MLG", "x": 75, "y": 54 },
+      { "position": "MAT", "x": 35, "y": 36 },
+      { "position": "MAT", "x": 65, "y": 36 },
+      { "position": "CA",  "x": 50, "y": 16 }
+    ]
+  },
+  {
+    "id": "4-3-1-2",
+    "name": "4-3-1-2",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "LE",  "x": 15, "y": 72 },
+      { "position": "ZA",  "x": 35, "y": 72 },
+      { "position": "ZA",  "x": 65, "y": 72 },
+      { "position": "LD",  "x": 85, "y": 72 },
+      { "position": "MLG", "x": 22, "y": 54 },
+      { "position": "VOL", "x": 50, "y": 57 },
+      { "position": "MLG", "x": 78, "y": 54 },
+      { "position": "MAT", "x": 50, "y": 38 },
+      { "position": "CA",  "x": 35, "y": 18 },
+      { "position": "CA",  "x": 65, "y": 18 }
+    ]
+  },
+  {
+    "id": "4-2-1-2",
+    "name": "4-2-1-2",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "LE",  "x": 15, "y": 72 },
+      { "position": "ZA",  "x": 35, "y": 72 },
+      { "position": "ZA",  "x": 65, "y": 72 },
+      { "position": "LD",  "x": 85, "y": 72 },
+      { "position": "VOL", "x": 33, "y": 57 },
+      { "position": "VOL", "x": 67, "y": 57 },
+      { "position": "MAT", "x": 50, "y": 42 },
+      { "position": "MLE", "x": 25, "y": 26 },
+      { "position": "MLD", "x": 75, "y": 26 },
+      { "position": "CA",  "x": 50, "y": 12 }
+    ]
+  },
+  {
+    "id": "4-1-4-1",
+    "name": "4-1-4-1",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "LE",  "x": 15, "y": 72 },
+      { "position": "ZA",  "x": 35, "y": 72 },
+      { "position": "ZA",  "x": 65, "y": 72 },
+      { "position": "LD",  "x": 85, "y": 72 },
+      { "position": "VOL", "x": 50, "y": 60 },
+      { "position": "MLE", "x": 15, "y": 44 },
+      { "position": "MLG", "x": 37, "y": 44 },
+      { "position": "MLG", "x": 63, "y": 44 },
+      { "position": "MLD", "x": 85, "y": 44 },
+      { "position": "CA",  "x": 50, "y": 18 }
+    ]
+  },
+  {
+    "id": "3-4-3",
+    "name": "3-4-3",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "ZA",  "x": 25, "y": 72 },
+      { "position": "ZA",  "x": 50, "y": 72 },
+      { "position": "ZA",  "x": 75, "y": 72 },
+      { "position": "MLE", "x": 15, "y": 50 },
+      { "position": "MLG", "x": 38, "y": 50 },
+      { "position": "MLG", "x": 62, "y": 50 },
+      { "position": "MLD", "x": 85, "y": 50 },
+      { "position": "PTE", "x": 18, "y": 22 },
+      { "position": "CA",  "x": 50, "y": 15 },
+      { "position": "PTD", "x": 82, "y": 22 }
+    ]
+  },
+  {
     "id": "3-5-2",
     "name": "3-5-2",
     "slots": [
@@ -68,6 +153,23 @@
     ]
   },
   {
+    "id": "5-2-2-1",
+    "name": "5-2-2-1",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "LE",  "x": 10, "y": 68 },
+      { "position": "ZA",  "x": 27, "y": 72 },
+      { "position": "ZA",  "x": 50, "y": 75 },
+      { "position": "ZA",  "x": 73, "y": 72 },
+      { "position": "LD",  "x": 90, "y": 68 },
+      { "position": "VOL", "x": 35, "y": 55 },
+      { "position": "VOL", "x": 65, "y": 55 },
+      { "position": "MAT", "x": 30, "y": 37 },
+      { "position": "MAT", "x": 70, "y": 37 },
+      { "position": "CA",  "x": 50, "y": 18 }
+    ]
+  },
+  {
     "id": "5-3-2",
     "name": "5-3-2",
     "slots": [
@@ -80,6 +182,23 @@
       { "position": "MLG", "x": 25, "y": 48 },
       { "position": "MLG", "x": 50, "y": 48 },
       { "position": "MLG", "x": 75, "y": 48 },
+      { "position": "CA",  "x": 35, "y": 20 },
+      { "position": "CA",  "x": 65, "y": 20 }
+    ]
+  },
+  {
+    "id": "3-1-4-2",
+    "name": "3-1-4-2",
+    "slots": [
+      { "position": "GO",  "x": 50, "y": 90 },
+      { "position": "ZA",  "x": 25, "y": 72 },
+      { "position": "ZA",  "x": 50, "y": 72 },
+      { "position": "ZA",  "x": 75, "y": 72 },
+      { "position": "VOL", "x": 50, "y": 60 },
+      { "position": "MLE", "x": 12, "y": 46 },
+      { "position": "MLG", "x": 35, "y": 46 },
+      { "position": "MLG", "x": 65, "y": 46 },
+      { "position": "MLD", "x": 88, "y": 46 },
       { "position": "CA",  "x": 35, "y": 20 },
       { "position": "CA",  "x": 65, "y": 20 }
     ]

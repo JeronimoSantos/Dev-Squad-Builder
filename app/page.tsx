@@ -10,6 +10,9 @@ import SquadRolesPanel from "@/components/SquadRolesPanel";
 import ShareModal from "@/components/ShareModal";
 import { useSquadStore } from "@/store/squadStore";
 import { encodeSquad, decodeSquad } from "@/lib/shareUrl";
+import { onPhotoError } from "@/lib/photoFallback";
+import AuthButton from "@/components/AuthButton";
+import type { Squad } from "@/types";
 
 type Panel = "players" | "formation" | "coach" | "funcoes";
 
@@ -17,23 +20,27 @@ export default function Home() {
   const [activePanel, setActivePanel] = useState<Panel>("formation");
   const [showShare, setShowShare] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [importCandidate, setImportCandidate] = useState<Squad | null>(null);
   const { reset, squad } = useSquadStore();
 
   const filledCount = squad.slots.filter((s) => s.player).length;
   const totalSlots = squad.slots.length;
 
-  // Ao carregar, verifica se há um squad codificado no hash da URL
+  // Ao carregar, verifica se há um squad compartilhado no hash da URL.
+  // Em vez de substituir automaticamente, mostra um banner de confirmação.
   useEffect(() => {
-    const hash = window.location.hash.slice(1); // remove o "#"
+    const hash = window.location.hash.slice(1);
     if (!hash) return;
-
     const decoded = decodeSquad(hash);
-    if (!decoded) return;
-
-    // Hidrata o store com o squad da URL e limpa o hash
-    useSquadStore.setState({ squad: decoded, activeSlotIndex: null });
     window.history.replaceState(null, "", window.location.pathname);
+    if (decoded) setImportCandidate(decoded);
   }, []);
+
+  const applyImport = () => {
+    if (!importCandidate) return;
+    useSquadStore.setState({ squad: importCandidate, activeSlotIndex: null });
+    setImportCandidate(null);
+  };
 
   const copyLink = useCallback(() => {
     const encoded = encodeSquad(squad);
@@ -46,6 +53,34 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#0d0d1a] text-white flex flex-col">
+      {/* Import confirmation banner */}
+      {importCandidate && (
+        <div className="bg-yellow-400/10 border-b border-yellow-400/20 px-4 py-2 flex items-center gap-3">
+          <span className="text-yellow-400 text-xs">
+            Squad compartilhado recebido
+            {importCandidate.formation && (
+              <span className="font-bold"> · {importCandidate.formation.name}</span>
+            )}
+            {" "}·{" "}
+            {importCandidate.slots.filter((s) => s.player).length} jogadores
+          </span>
+          <div className="flex items-center gap-2 ml-auto">
+            <button
+              onClick={applyImport}
+              className="text-xs font-semibold text-black bg-yellow-400 hover:bg-yellow-300 px-3 py-1 rounded-lg transition-all"
+            >
+              Importar
+            </button>
+            <button
+              onClick={() => setImportCandidate(null)}
+              className="text-xs text-gray-400 hover:text-white transition-colors"
+            >
+              Ignorar
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className="border-b border-white/10 px-4 py-3 flex items-center justify-between">
         <div>
@@ -88,6 +123,8 @@ export default function Home() {
           >
             Resetar
           </button>
+          <div className="w-px h-5 bg-white/10" />
+          <AuthButton />
         </div>
       </header>
 
@@ -195,7 +232,7 @@ export default function Home() {
         </div>
 
         {/* Center: tactical field */}
-        <div className="flex-1 flex flex-col items-center justify-center p-6 overflow-auto">
+        <div className="flex-1 flex flex-col items-center justify-start p-6 overflow-auto">
           <TacticalField />
         </div>
 
@@ -214,11 +251,7 @@ export default function Home() {
                   src={squad.coach.photo}
                   alt={squad.coach.name}
                   className="w-10 h-10 rounded-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                      squad.coach!.name
-                    )}&background=1a1a2e&color=fff&size=40`;
-                  }}
+                  onError={(e) => onPhotoError(e, squad.coach!.handle, squad.coach!.name, 40)}
                 />
                 <div>
                   <p className="text-white text-xs font-bold">

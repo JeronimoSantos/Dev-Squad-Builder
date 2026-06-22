@@ -17,23 +17,42 @@ function initialsDataUri(name: string): string {
     .join("")
     .toUpperCase();
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="#1a1a2e"/><text x="20" y="26" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="bold" font-family="Arial">${initials}</text></svg>`;
-  return `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
+  const b64 = btoa(encodeURIComponent(svg).replace(/%([0-9A-F]{2})/gi, (_, p1) => String.fromCharCode(parseInt(p1, 16))));
+  return `data:image/svg+xml;base64,${b64}`;
 }
 
-async function fetchBase64(url: string, fallback: string): Promise<string> {
+async function blobToBase64(blob: Blob): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function tryFetch(url: string): Promise<string | null> {
   try {
     const res = await fetch(url, { mode: "cors" });
-    if (!res.ok) return initialsDataUri(fallback);
-    const blob = await res.blob();
-    return await new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
+    if (!res.ok) return null;
+    return blobToBase64(await res.blob());
   } catch {
-    return initialsDataUri(fallback);
+    return null;
   }
+}
+
+// Cascade: photo URL → GitHub avatar → SVG initials
+async function fetchBase64(url: string, handle: string, name: string): Promise<string> {
+  const primary = await tryFetch(url);
+  if (primary) return primary;
+
+  const cleanHandle = handle.replace("@", "");
+  const githubUrl = `https://github.com/${cleanHandle}.png`;
+  if (url !== githubUrl) {
+    const github = await tryFetch(githubUrl);
+    if (github) return github;
+  }
+
+  return initialsDataUri(name);
 }
 
 export default function ShareModal({ squad, onClose }: ShareModalProps) {
@@ -54,7 +73,7 @@ export default function ShareModal({ squad, onClose }: ShareModalProps) {
       // 2. Convert each photo to base64 to avoid CORS issues in canvas
       const entries = await Promise.all(
         players.map(async (p) => {
-          const base64 = await fetchBase64(p.photo, p.name);
+          const base64 = await fetchBase64(p.photo, p.handle, p.name);
           return [p.id, base64] as [string, string];
         })
       );
