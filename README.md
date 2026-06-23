@@ -16,7 +16,7 @@ Inspirado nos modos de construção de time dos videogames de futebol (FIFA Ulti
 - **Funções especiais** — atribua capitão, cobrador de pênalti, cobrador de falta e cobrador de escanteio
 - **Estatísticas do time** — média de atributos em tempo real com bônus do técnico aplicados
 - **Busca de jogadores** — filtre por nome, handle, role ou tecnologia
-- **Exportar card para redes sociais** — gera uma imagem 1080×1080px pronta para Instagram, Twitter/X e LinkedIn
+- **Exportar card para redes sociais** — dois estilos de card para compartilhar: **Social** (1080×1080px, ideal para Instagram/Twitter/LinkedIn) e **Transmissão** (1080×608px, estilo broadcast FIFA, ideal para YouTube/banners)
 - **Persistência local** — o time montado é salvo automaticamente no navegador (localStorage)
 - **Compartilhar por link** — gera uma URL com o time inteiro codificado no hash
 - **Elenco customizável** — adicione, edite e remova jogadores e técnicos diretamente pelo painel
@@ -148,16 +148,34 @@ Ao posicionar pelo menos um jogador no campo, o botão **Compartilhar** aparece 
 
 **Fluxo:**
 1. Clique em **Compartilhar** no canto superior direito
-2. Clique em **Gerar Prévia** para renderizar o card
-3. Clique em **Baixar PNG** para salvar o arquivo (`dev-squad-4-3-3.png`)
+2. Escolha o estilo do card: **Social** ou **Transmissão**
+3. Clique em **Gerar Prévia** para renderizar o card
+4. Clique em **Baixar PNG** para salvar o arquivo
 
-**Conteúdo do card (1080×1080px):**
-- Nome da formação e overall médio do time
-- Campo tático com nomes, posições e overall de cada jogador
+### Estilo Social (1080×1080px)
+
+Ideal para Instagram, Twitter/X e LinkedIn.
+
+- Campo tático interativo com foto, nome, posição e overall de cada jogador
 - Badges de funções especiais (C = Capitão, P = Pênalti, F = Falta, E = Escanteio)
-- Técnico selecionado e sua filosofia
-- Barras de atributos com bônus do técnico aplicados
-- Hashtags `#DevSquadBuilder`, `#BolhaDev`, `#CopaDoMundo2026`, `#UltimateTeam` e `#Gamification`
+- Painel com nome e filosofia do técnico
+- Barras de atributos médios com bônus do técnico aplicados
+- Painel de funções especiais atribuídas
+- Degradê brasileiro (amarelo → verde → azul) no canto inferior esquerdo
+- Hashtags `#DevSquadBuilder · #BolhaDev · #CopaDoMundo2026 · #UltimateTeam · #Gamification`
+- Arquivo: `dev-squad-4-3-3.png`
+
+### Estilo Transmissão (1080×608px)
+
+Layout estilo broadcast/FIFA — ideal para banners, thumbnails de YouTube e stories horizontais.
+
+- **Coluna esquerda:** campo tático em miniatura com pontos/fotos dos jogadores posicionados + foto e nome do técnico
+- **Coluna central:** lista completa de jogadores ordenados por posição, com foto, overall, badge de função e posição
+- **Coluna direita:** foto em destaque do capitão (ou jogador com maior overall), com nome e overall sobrepostos
+- Barra de acento tricolor (amarelo → verde → azul) no topo
+- Degradê brasileiro no canto inferior esquerdo
+- Cabeçalho com "MEU TIME" em Bebas Neue, badge de formação e overall médio
+- Arquivo: `dev-squad-4-3-3-broadcast.png`
 
 ---
 
@@ -386,8 +404,9 @@ projeto-squad-builder/
 │   ├── CoachFormModal.tsx    # Modal formulário para criar/editar técnico
 │   ├── SquadStats.tsx        # Estatísticas médias do time com bônus
 │   ├── SquadRolesPanel.tsx   # Painel de funções especiais
-│   ├── ShareCard.tsx         # Card 1080×1080px para exportação social
-│   ├── ShareModal.tsx        # Modal com prévia e botão de download
+│   ├── ShareCard.tsx         # Card 1080×1080px estilo Social para exportação
+│   ├── ShareCardBroadcast.tsx# Card 1080×608px estilo Transmissão (broadcast FIFA)
+│   ├── ShareModal.tsx        # Modal com seletor de estilo, prévia e download
 │   ├── AuthModal.tsx         # Modal de login/cadastro/recuperação de senha
 │   ├── AuthButton.tsx        # Botão de login/logout no header
 │   ├── AppInit.tsx           # Inicializa o listener de autenticação Supabase
@@ -475,7 +494,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 4. Atribua **Funções** especiais na aba Funções
 5. Acompanhe as **Estatísticas** no painel lateral (desktop) ou aba Stats (mobile)
 6. Clique em **Copiar Link** para compartilhar o time pela URL
-7. Clique em **Compartilhar** para gerar e baixar o card PNG
+7. Clique em **Compartilhar** → escolha o estilo **Social** (1080×1080) ou **Transmissão** (1080×608) → **Gerar Prévia** → **Baixar PNG**
 8. Use o botão **☀️/🌙** para alternar entre Camisa Amarela e Camisa Azul
 9. Clique em **Entrar** para criar conta e sincronizar o squad entre dispositivos
 

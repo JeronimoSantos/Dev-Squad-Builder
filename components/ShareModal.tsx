@@ -3,6 +3,9 @@
 import { useRef, useState, useCallback } from "react";
 import { Squad } from "@/types";
 import ShareCard from "./ShareCard";
+import ShareCardBroadcast from "./ShareCardBroadcast";
+
+type CardStyle = "social" | "broadcast";
 
 interface ShareModalProps {
   squad: Squad;
@@ -40,7 +43,6 @@ async function tryFetch(url: string): Promise<string | null> {
   }
 }
 
-// Cascade: photo URL → GitHub avatar → SVG initials
 async function fetchBase64(url: string, handle: string, name: string): Promise<string> {
   const primary = await tryFetch(url);
   if (primary) return primary;
@@ -55,38 +57,62 @@ async function fetchBase64(url: string, handle: string, name: string): Promise<s
   return initialsDataUri(name);
 }
 
+const STYLES: { key: CardStyle; label: string; sub: string; aspect: string }[] = [
+  {
+    key: "social",
+    label: "Social",
+    sub: "1080×1080 · Instagram / Twitter",
+    aspect: "aspect-square",
+  },
+  {
+    key: "broadcast",
+    label: "Transmissão",
+    sub: "1080×608 · YouTube / Banner",
+    aspect: "aspect-video",
+  },
+];
+
 export default function ShareModal({ squad, onClose }: ShareModalProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
+  const broadcastRef = useRef<HTMLDivElement>(null);
+
+  const [cardStyle, setCardStyle] = useState<CardStyle>("social");
   const [isGenerating, setIsGenerating] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [photoMap, setPhotoMap] = useState<Record<string, string>>({});
 
+  const activeRef = cardStyle === "social" ? socialRef : broadcastRef;
+
   const generate = useCallback(async () => {
-    if (!cardRef.current) return;
+    if (!activeRef.current) return;
     setIsGenerating(true);
     try {
-      // 1. Collect all players currently in the squad
       const players = squad.slots
         .filter((s) => s.player !== null)
         .map((s) => s.player!);
 
-      // 2. Convert each photo to base64 to avoid CORS issues in canvas
-      const entries = await Promise.all(
+      const playerEntries = await Promise.all(
         players.map(async (p) => {
           const base64 = await fetchBase64(p.photo, p.handle, p.name);
           return [p.id, base64] as [string, string];
         })
       );
-      const map = Object.fromEntries(entries);
+
+      // Also fetch coach photo so broadcast card can display it
+      const coachEntries: [string, string][] = [];
+      if (squad.coach) {
+        const base64 = await fetchBase64(squad.coach.photo, squad.coach.handle, squad.coach.name);
+        coachEntries.push([squad.coach.id, base64]);
+      }
+
+      const map = Object.fromEntries([...playerEntries, ...coachEntries]);
       setPhotoMap(map);
 
-      // 3. Wait one frame so React re-renders the card with base64 photos
       await new Promise((r) => requestAnimationFrame(r));
       await new Promise((r) => requestAnimationFrame(r));
 
-      // 4. Capture
       const { toPng } = await import("html-to-image");
-      const url = await toPng(cardRef.current, {
+      const url = await toPng(activeRef.current, {
         quality: 1,
         pixelRatio: 1,
         skipFonts: true,
@@ -97,16 +123,25 @@ export default function ShareModal({ squad, onClose }: ShareModalProps) {
     } finally {
       setIsGenerating(false);
     }
-  }, [squad.slots]);
+  }, [squad.slots, squad.coach, activeRef]);
 
   const download = useCallback(() => {
     if (!previewUrl) return;
     const formation = squad.formation?.name ?? "squad";
+    const suffix = cardStyle === "broadcast" ? "-broadcast" : "";
     const a = document.createElement("a");
     a.href = previewUrl;
-    a.download = `dev-squad-${formation}.png`;
+    a.download = `dev-squad-${formation}${suffix}.png`;
     a.click();
-  }, [previewUrl, squad.formation]);
+  }, [previewUrl, squad.formation, cardStyle]);
+
+  const handleStyleChange = (style: CardStyle) => {
+    if (style === cardStyle) return;
+    setCardStyle(style);
+    setPreviewUrl(null);
+  };
+
+  const active = STYLES.find((s) => s.key === cardStyle)!;
 
   return (
     <div
@@ -117,14 +152,30 @@ export default function ShareModal({ squad, onClose }: ShareModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
           <div>
-            <h2 className="text-white font-bold text-sm">Gerar Card para Redes Sociais</h2>
-            <p className="text-gray-500 text-xs mt-0.5">
-              Imagem 1080×1080px — ideal para Instagram, Twitter e LinkedIn
-            </p>
+            <h2 className="text-white font-bold text-sm">Gerar Card para Compartilhar</h2>
+            <p className="text-gray-500 text-xs mt-0.5">{active.sub}</p>
           </div>
           <button onClick={onClose} className="text-gray-500 hover:text-white text-lg transition-colors">
             ✕
           </button>
+        </div>
+
+        {/* Style toggle */}
+        <div className="flex gap-2 px-5 pt-4 shrink-0">
+          {STYLES.map((s) => (
+            <button
+              key={s.key}
+              onClick={() => handleStyleChange(s.key)}
+              className={[
+                "flex-1 py-2 px-3 rounded-xl border text-sm font-semibold transition-all",
+                cardStyle === s.key
+                  ? "bg-yellow-400/15 border-yellow-400/60 text-yellow-300"
+                  : "bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10",
+              ].join(" ")}
+            >
+              {s.label}
+            </button>
+          ))}
         </div>
 
         {/* Preview area */}
@@ -133,17 +184,19 @@ export default function ShareModal({ squad, onClose }: ShareModalProps) {
             <img
               src={previewUrl}
               alt="Preview do card"
-              className="w-full max-w-md rounded-xl border border-white/10 shadow-xl"
+              className={`w-full max-w-md rounded-xl border border-white/10 shadow-xl ${active.aspect}`}
+              style={{ objectFit: "contain" }}
             />
           ) : (
-            <div className="w-full max-w-md aspect-square bg-white/5 border border-white/10 rounded-xl flex items-center justify-center">
-              <p className="text-gray-500 text-sm">Clique em "Gerar Prévia" para visualizar</p>
+            <div className={`w-full max-w-md ${active.aspect} bg-white/5 border border-white/10 rounded-xl flex items-center justify-center`}>
+              <p className="text-gray-500 text-sm">Clique em &quot;Gerar Prévia&quot; para visualizar</p>
             </div>
           )}
 
-          {/* Hidden full-res card for capture */}
+          {/* Off-screen cards for capture */}
           <div className="overflow-hidden absolute left-[9999px] top-[9999px] pointer-events-none">
-            <ShareCard ref={cardRef} squad={squad} photoMap={photoMap} />
+            <ShareCard ref={socialRef} squad={squad} photoMap={photoMap} />
+            <ShareCardBroadcast ref={broadcastRef} squad={squad} photoMap={photoMap} />
           </div>
         </div>
 
