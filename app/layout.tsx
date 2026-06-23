@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import AppInit from "@/components/AppInit";
 import SyncProvider from "@/components/SyncProvider";
@@ -12,6 +12,18 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  variable: "--font-bebas",
+  subsets: ["latin"],
+});
+
+const barlowCondensed = Barlow_Condensed({
+  weight: ["400", "600", "700", "900"],
+  variable: "--font-barlow",
   subsets: ["latin"],
 });
 
@@ -33,7 +45,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${barlowCondensed.variable} h-full antialiased`}
     >
       <head>
         <style dangerouslySetInnerHTML={{ __html: `

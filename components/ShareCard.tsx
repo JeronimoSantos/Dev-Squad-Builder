@@ -53,7 +53,7 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
         width: "1080px",
         height: "1080px",
         background: "linear-gradient(135deg, #0d0d1a 0%, #0f1f0f 50%, #0d0d1a 100%)",
-        fontFamily: "Arial, sans-serif",
+        fontFamily: "'Barlow Condensed', Arial Narrow, sans-serif",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -69,25 +69,33 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
         backgroundSize: "60px 60px",
       }} />
 
+      {/* Brazilian gradient — bottom left accent */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0,
+        width: "520px", height: "520px", pointerEvents: "none",
+        background: "radial-gradient(ellipse at bottom left, rgba(255,213,0,0.18) 0%, rgba(0,156,59,0.13) 38%, rgba(0,39,118,0.10) 65%, transparent 100%)",
+      }} />
+
+
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "32px", position: "relative" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px", position: "relative" }}>
         <div>
-          <div style={{ fontSize: "14px", letterSpacing: "6px", color: "#fbbf24", fontWeight: 700, textTransform: "uppercase", marginBottom: "4px" }}>
+          <div style={{ fontSize: "13px", letterSpacing: "5px", color: "#fbbf24", fontWeight: 700, textTransform: "uppercase", marginBottom: "2px", fontFamily: "'Barlow Condensed', sans-serif", whiteSpace: "nowrap" }}>
             Dev Squad Builder
           </div>
-          <div style={{ fontSize: "52px", fontWeight: 900, color: "#ffffff", lineHeight: 1, letterSpacing: "-1px" }}>
+          <div style={{ fontSize: "58px", fontWeight: 400, color: "#ffffff", lineHeight: 1, letterSpacing: "3px", fontFamily: "'Bebas Neue', Impact, sans-serif", whiteSpace: "nowrap" }}>
             MEU TIME
           </div>
         </div>
         <div style={{ textAlign: "right" }}>
           {squad.formation && (
-            <div style={{ background: "#fbbf24", color: "#000", padding: "10px 20px", borderRadius: "8px", fontSize: "28px", fontWeight: 900, display: "inline-block" }}>
+            <div style={{ background: "#fbbf24", color: "#000", padding: "8px 18px", borderRadius: "8px", fontSize: "30px", fontWeight: 400, display: "inline-block", fontFamily: "'Bebas Neue', Impact, sans-serif", letterSpacing: "2px", whiteSpace: "nowrap" }}>
               {squad.formation.name}
             </div>
           )}
           {overall > 0 && (
-            <div style={{ marginTop: "8px", color: "#ffffff", fontSize: "16px", opacity: 0.6 }}>
-              Overall médio: <span style={{ color: "#fbbf24", fontWeight: 700, fontSize: "24px" }}>{overall}</span>
+            <div style={{ marginTop: "6px", color: "#ffffff", fontSize: "13px", opacity: 0.6, fontFamily: "'Barlow Condensed', sans-serif", whiteSpace: "nowrap" }}>
+              Overall médio: <span style={{ color: "#fbbf24", fontWeight: 700, fontSize: "22px", fontFamily: "'Bebas Neue', Impact, sans-serif", letterSpacing: "1px" }}>{overall}</span>
             </div>
           )}
         </div>
@@ -134,12 +142,12 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
                 textAlign: "center",
               }}>
                 {slot.player ? (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
                     <div style={{
-                      width: "40px", height: "40px", borderRadius: "50%",
-                      border: "2px solid rgba(251,191,36,0.9)",
+                      width: "52px", height: "52px", borderRadius: "50%",
+                      border: "2.5px solid rgba(251,191,36,0.9)",
                       position: "relative",
-                      boxShadow: "0 2px 10px rgba(0,0,0,0.6)",
+                      boxShadow: "0 2px 12px rgba(0,0,0,0.7)",
                       overflow: "visible",
                     }}>
                       {/* Photo */}
@@ -147,28 +155,28 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
                         src={photoMap[slot.player.id] ?? slot.player.photo}
                         alt={slot.player.name}
                         style={{
-                          width: "40px", height: "40px", borderRadius: "50%",
+                          width: "52px", height: "52px", borderRadius: "50%",
                           objectFit: "cover", display: "block",
                         }}
                       />
                       {/* Overall badge */}
                       <div style={{
-                        position: "absolute", bottom: "-4px", left: "-4px",
-                        width: "18px", height: "18px", borderRadius: "50%",
+                        position: "absolute", bottom: "-5px", left: "-5px",
+                        width: "22px", height: "22px", borderRadius: "50%",
                         background: "#0d0d1a", border: "1.5px solid #fbbf24",
                         display: "flex", alignItems: "center", justifyContent: "center",
                       }}>
-                        <span style={{ color: "#fbbf24", fontSize: "7px", fontWeight: 900 }}>
+                        <span style={{ color: "#fbbf24", fontSize: "9px", fontWeight: 900 }}>
                           {slot.player.overall}
                         </span>
                       </div>
                       {/* Role badge */}
                       {roleBadge && (
                         <div style={{
-                          position: "absolute", top: "-4px", right: "-4px",
-                          width: "16px", height: "16px", borderRadius: "50%",
+                          position: "absolute", top: "-5px", right: "-5px",
+                          width: "20px", height: "20px", borderRadius: "50%",
                           background: "#fbbf24", color: "#000",
-                          fontSize: "8px", fontWeight: 900,
+                          fontSize: "9px", fontWeight: 900,
                           display: "flex", alignItems: "center", justifyContent: "center",
                         }}>
                           {roleBadge}
@@ -176,24 +184,24 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
                       )}
                     </div>
                     <div style={{
-                      background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)",
-                      padding: "2px 6px", borderRadius: "4px",
-                      maxWidth: "72px",
+                      background: "rgba(0,0,0,0.80)", backdropFilter: "blur(4px)",
+                      padding: "3px 8px", borderRadius: "5px",
+                      maxWidth: "84px",
                     }}>
-                      <div style={{ color: "#ffffff", fontSize: "9px", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      <div style={{ color: "#ffffff", fontSize: "11px", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                         {slot.player.name.split(" ")[0]}
                       </div>
-                      <div style={{ color: "#fbbf24", fontSize: "8px" }}>{slot.position}</div>
+                      <div style={{ color: "#fbbf24", fontSize: "9px" }}>{slot.position}</div>
                     </div>
                   </div>
                 ) : (
                   <div style={{
-                    width: "28px", height: "28px", borderRadius: "50%",
+                    width: "34px", height: "34px", borderRadius: "50%",
                     border: "1.5px dashed rgba(255,255,255,0.2)",
                     background: "rgba(255,255,255,0.05)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
-                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "7px" }}>{slot.position}</span>
+                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "8px" }}>{slot.position}</span>
                   </div>
                 )}
               </div>
@@ -208,15 +216,15 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
             <div style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "12px", padding: "20px",
+              borderRadius: "12px", padding: "22px",
             }}>
-              <div style={{ color: "#9ca3af", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "10px" }}>
+              <div style={{ color: "#9ca3af", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "10px" }}>
                 Técnico
               </div>
-              <div style={{ color: "#ffffff", fontSize: "20px", fontWeight: 900 }}>
+              <div style={{ color: "#ffffff", fontSize: "30px", fontWeight: 400, fontFamily: "'Bebas Neue', Impact, sans-serif", letterSpacing: "2px" }}>
                 {squad.coach.name}
               </div>
-              <div style={{ color: "#fbbf24", fontSize: "12px", marginTop: "4px" }}>
+              <div style={{ color: "#fbbf24", fontSize: "14px", marginTop: "5px" }}>
                 "{squad.coach.philosophy}"
               </div>
             </div>
@@ -227,21 +235,21 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
             <div style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "12px", padding: "20px", flex: 1,
+              borderRadius: "12px", padding: "22px", flex: 1,
             }}>
-              <div style={{ color: "#9ca3af", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "16px" }}>
+              <div style={{ color: "#9ca3af", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "18px" }}>
                 Atributos
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                 {avgAttributes.map(({ key, value }) => (
                   <div key={key}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                      <span style={{ color: "#d1d5db", fontSize: "12px" }}>{attributeLabels[key]}</span>
-                      <span style={{ color: "#ffffff", fontSize: "12px", fontWeight: 700 }}>{value}</span>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "5px" }}>
+                      <span style={{ color: "#d1d5db", fontSize: "14px" }}>{attributeLabels[key]}</span>
+                      <span style={{ color: "#ffffff", fontSize: "14px", fontWeight: 700 }}>{value}</span>
                     </div>
-                    <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", overflow: "hidden" }}>
+                    <div style={{ height: "8px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
                       <div style={{
-                        height: "100%", borderRadius: "3px",
+                        height: "100%", borderRadius: "4px",
                         width: `${value}%`,
                         background: attributeColors[key],
                       }} />
@@ -257,12 +265,12 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
             <div style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "12px", padding: "20px",
+              borderRadius: "12px", padding: "22px",
             }}>
-              <div style={{ color: "#9ca3af", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "12px" }}>
+              <div style={{ color: "#9ca3af", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "14px" }}>
                 Funções
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 {(["capitao", "cobPenalti", "cobFalta", "cobEscanteio"] as const).map((key) => {
                   const id = squad.roles[key];
                   const player = squad.slots.find((s) => s.player?.id === id)?.player;
@@ -275,8 +283,8 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
                   };
                   return (
                     <div key={key} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <span style={{ color: "#6b7280", fontSize: "11px" }}>{labels[key]}</span>
-                      <span style={{ color: "#fbbf24", fontSize: "11px", fontWeight: 700 }}>{player.name.split(" ")[0]}</span>
+                      <span style={{ color: "#6b7280", fontSize: "13px" }}>{labels[key]}</span>
+                      <span style={{ color: "#fbbf24", fontSize: "13px", fontWeight: 700 }}>{player.name.split(" ")[0]}</span>
                     </div>
                   );
                 })}
@@ -293,10 +301,10 @@ const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(({ squad, photoMap 
         display: "flex", justifyContent: "space-between", alignItems: "center",
         position: "relative",
       }}>
-        <div style={{ color: "rgba(255,255,255,0.2)", fontSize: "11px", letterSpacing: "1px" }}>
-          #DevSquadBuilder · #BolhaDev
+        <div style={{ color: "rgba(255,255,255,0.25)", fontSize: "12px", letterSpacing: "0.5px" }}>
+          #DevSquadBuilder · #BolhaDev · #CopaDoMundo2026 · #UltimateTeam · #Gamification
         </div>
-        <div style={{ color: "rgba(255,255,255,0.15)", fontSize: "11px" }}>
+        <div style={{ color: "rgba(255,255,255,0.15)", fontSize: "12px", flexShrink: 0, marginLeft: "16px" }}>
           devsquadbuilder.vercel.app
         </div>
       </div>

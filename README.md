@@ -157,7 +157,7 @@ Ao posicionar pelo menos um jogador no campo, o botão **Compartilhar** aparece 
 - Badges de funções especiais (C = Capitão, P = Pênalti, F = Falta, E = Escanteio)
 - Técnico selecionado e sua filosofia
 - Barras de atributos com bônus do técnico aplicados
-- Hashtags `#DevSquadBuilder` e `#BolhaDev`
+- Hashtags `#DevSquadBuilder`, `#BolhaDev`, `#CopaDoMundo2026`, `#UltimateTeam` e `#Gamification`
 
 ---
 
