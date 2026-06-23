@@ -1,27 +1,45 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0d0d1a;
-  --foreground: #ededed;
+/* ── Base ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  cursor: url('/bola-de-futebol.png') 16 16, auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
+/* ── Custom animation utilities ───────────────────────────────────────────── */
+@theme {
+  --animate-slot-enter:   slot-enter   0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-fade-up:      fade-up      0.22s ease-out both;
+  --animate-slide-down:   slide-down   0.28s ease-out both;
+  --animate-modal-appear: modal-appear 0.22s ease-out both;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+
+@keyframes slot-enter {
+  0%   { transform: scale(0.2); opacity: 0; }
+  65%  { transform: scale(1.14); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
 }
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0);     }
 }
+
+@keyframes modal-appear {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+/* ── Custom scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }

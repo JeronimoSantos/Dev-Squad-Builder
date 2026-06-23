@@ -94,7 +94,7 @@ export default function PlayerFormModal({ initial, onSave, onClose }: Props) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-[#0d0d1a] border border-white/10 rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+      <div className="animate-modal-appear bg-(--c-modal) border border-white/10 rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
           <h2 className="text-white font-bold text-sm">
@@ -158,7 +158,7 @@ export default function PlayerFormModal({ initial, onSave, onClose }: Props) {
               className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-xs focus:outline-none focus:border-yellow-400/50"
             >
               {ROLES.map((r) => (
-                <option key={r} value={r} className="bg-[#0d0d1a]">
+                <option key={r} value={r} className="bg-(--c-modal)">
                   {r}
                 </option>
               ))}

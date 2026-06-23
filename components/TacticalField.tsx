@@ -31,13 +31,13 @@ function PlayerSlot({
   return (
     <div
       className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-      style={{ left: `${slot.x}%`, top: `${slot.y}%` }}
+      style={{ left: `${slot.x}%`, top: `${slot.y}%`, transition: "left 0.45s ease, top 0.45s ease" }}
       onClick={handleClick}
     >
       {slot.player ? (
-        <div className="flex flex-col items-center gap-0.5">
+        <div key={slot.player.id} className="animate-slot-enter flex flex-col items-center gap-0.5">
           <div
-            className={`relative w-12 h-12 rounded-full border-2 overflow-hidden shadow-lg transition-all ${
+            className={`relative w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 overflow-hidden shadow-lg transition-all ${
               isActive
                 ? "border-yellow-400 scale-110 ring-2 ring-yellow-400"
                 : "border-white hover:border-yellow-400 hover:scale-105"
@@ -57,7 +57,7 @@ function PlayerSlot({
             </button>
           </div>
           <div className="bg-black/70 backdrop-blur-sm px-1.5 py-0.5 rounded text-center max-w-72px">
-            <p className="text-white text-[10px] font-bold truncate leading-tight">
+            <p className="text-[white] text-[10px] font-bold truncate leading-tight">
               {slot.player.name.split(" ")[0]}
             </p>
             <p className="text-yellow-400 text-[9px] leading-tight">
@@ -67,9 +67,9 @@ function PlayerSlot({
         </div>
       ) : (
         <div
-          className={`w-10 h-10 rounded-full border-2 border-dashed flex items-center justify-center transition-all ${
+          className={`w-7 h-7 lg:w-10 lg:h-10 rounded-full border-2 border-dashed flex items-center justify-center transition-all ${
             isActive
-              ? "border-yellow-400 bg-yellow-400/20 scale-110"
+              ? "border-yellow-400 bg-yellow-400/20 scale-110 animate-pulse"
               : "border-white/50 bg-white/10 hover:border-white hover:bg-white/20"
           }`}
         >
@@ -89,8 +89,8 @@ export default function TacticalField() {
 
   if (!squad.formation) {
     return (
-      <div className="relative w-full aspect-2/3 max-w-sm mx-auto bg-green-800 rounded-xl border-2 border-green-600 flex items-center justify-center">
-        <p className="text-green-300/70 text-sm text-center px-4">
+      <div className="relative w-full aspect-2/3 max-w-55 sm:max-w-xs lg:max-w-sm mx-auto bg-green-800 rounded-xl border-2 border-green-600 flex items-center justify-center">
+        <p className="text-green-300/70 text-xs lg:text-sm text-center px-4">
           Selecione uma formação para começar
         </p>
       </div>
@@ -98,7 +98,7 @@ export default function TacticalField() {
   }
 
   return (
-    <div className="relative w-full aspect-2/3 max-w-sm mx-auto select-none">
+    <div className="relative w-full aspect-2/3 max-w-55 sm:max-w-xs lg:max-w-sm mx-auto select-none">
       {/* Field background */}
       <div className="absolute inset-0 bg-green-700 rounded-xl overflow-hidden border-2 border-green-500 shadow-2xl">
         {/* Field lines */}

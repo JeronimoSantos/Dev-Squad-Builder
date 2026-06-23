@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { createClient } from "@/lib/supabase";
 
 interface AuthModalProps {
@@ -29,7 +29,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
 
   const supabase = createClient();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -71,7 +71,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-[#0d0d1a] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+      <div className="animate-modal-appear bg-(--c-modal) border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
           <h2 className="text-white font-bold text-sm">
